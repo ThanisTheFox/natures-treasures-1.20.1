@@ -17,6 +17,7 @@ public class ModItemGroups {
                     .icon(() -> new ItemStack(ModItems.WOODLAND_DOR_BEETLE_ITEM)).entries((displayContext, entries) -> {
                         entries.add(ModItems.ANT_ITEM);
                         entries.add(ModItems.WOODLAND_DOR_BEETLE_ITEM);
+                        entries.add(ModItems.BUG_NET);
                     }).build());
 
 

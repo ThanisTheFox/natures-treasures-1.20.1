@@ -1,6 +1,7 @@
 package net.beetle.naturestreasures.item;
 
 import net.beetle.naturestreasures.NaturesTreasures;
+import net.beetle.naturestreasures.item.custom.BugNetItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -12,6 +13,8 @@ import net.minecraft.util.Identifier;
 
 public class ModItems {
     public static final Item ANT_ITEM = registerItem("ant_item", new Item(new FabricItemSettings()));
+    public static final Item BUG_NET = registerItem("bug_net", new BugNetItem(
+            new FabricItemSettings().maxDamage(64)));
     public static final Item WOODLAND_DOR_BEETLE_ITEM = registerItem("woodland_dor_beetle_item", new Item(new FabricItemSettings()));
 
     private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries) {
