@@ -1,5 +1,6 @@
 package net.beetle.naturestreasures;
 
+import net.beetle.naturestreasures.item.ModItemGroups;
 import net.beetle.naturestreasures.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -14,5 +15,6 @@ public class NaturesTreasures implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModItems.registerModItems();
+		ModItemGroups.registerItemGroups();
 	}
 }
