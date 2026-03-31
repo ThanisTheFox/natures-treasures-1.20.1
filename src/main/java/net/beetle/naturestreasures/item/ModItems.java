@@ -16,7 +16,7 @@ public class ModItems {
     private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries) {entries
             .add(TEST);
     }
-
+//sneaky Iron Party
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(NaturesTreasures.MOD_ID, name), item);
     }
