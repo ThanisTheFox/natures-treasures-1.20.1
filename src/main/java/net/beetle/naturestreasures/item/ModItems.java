@@ -11,12 +11,14 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModItems {
-    public static final Item TEST= registerItem("test2", new Item(new FabricItemSettings()));
+    public static final Item ANT_ITEM = registerItem("ant_item", new Item(new FabricItemSettings()));
 
     private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries) {entries
-            .add(TEST);
+            .add(ANT_ITEM);
     }
+
 //sneaky Iron Party
+
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(NaturesTreasures.MOD_ID, name), item);
     }

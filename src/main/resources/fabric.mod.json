@@ -3,9 +3,9 @@
 	"id": "natures-treasures",
 	"version": "${version}",
 	"name": "Nature's Treasures",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Beetle.",
 	"authors": [
-		"Me!"
+		"Thanis747 & Swqsi"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
