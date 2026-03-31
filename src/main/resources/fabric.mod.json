@@ -16,10 +16,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.beetle.NaturesTreasures"
+          "net.beetle.naturestreasures.NaturesTreasures"
 		],
 		"fabric-datagen": [
-			"net.beetle.NaturesTreasuresDataGenerator"
+          "net.beetle.naturestreasures.NaturesTreasuresDataGenerator"
 		]
 	},
 	"mixins": [

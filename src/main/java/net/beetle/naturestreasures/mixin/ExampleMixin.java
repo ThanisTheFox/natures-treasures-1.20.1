@@ -1,4 +1,4 @@
-package net.beetle.mixin;
+package net.beetle.naturestreasures.mixin;
 
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Mixin;
