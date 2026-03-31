@@ -12,9 +12,11 @@ import net.minecraft.util.Identifier;
 
 public class ModItems {
     public static final Item ANT_ITEM = registerItem("ant_item", new Item(new FabricItemSettings()));
+    public static final Item WOODLAND_DOR_BEETLE_ITEM = registerItem("woodland_dor_beetle_item", new Item(new FabricItemSettings()));
 
-    private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries) {entries
-            .add(ANT_ITEM);
+    private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries) {
+        entries.add(ANT_ITEM);
+        entries.add(WOODLAND_DOR_BEETLE_ITEM);
     }
 
 //sneaky Iron Party

@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "naturestreasures:item/woodland_dor_beetle_item"
+  }
+}
