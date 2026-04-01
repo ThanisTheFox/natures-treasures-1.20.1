@@ -17,19 +17,19 @@ public class ModItems {
             new FabricItemSettings().maxDamage(32), 0, 1f));
 
     public static final Item BUG_NET_COPPER = registerItem("bug_net_copper", new BugNetItem(
-            new FabricItemSettings().maxDamage(48), 1, 1f));
+            new FabricItemSettings().maxDamage(48), 1, 1f + 0.1f));
 
     public static final Item BUG_NET_IRON = registerItem("bug_net_iron", new BugNetItem(
-            new FabricItemSettings().maxDamage(64), 1, 1f));
+            new FabricItemSettings().maxDamage(64), 2, 1f + 0.2f));
 
     public static final Item BUG_NET_GOLD = registerItem("bug_net_gold", new BugNetItem(
-            new FabricItemSettings().maxDamage(32), 2, 1f));
+            new FabricItemSettings().maxDamage(24), 2, 1f + 0.5f));
 
     public static final Item BUG_NET_DIAMOND = registerItem("bug_net_diamond", new BugNetItem(
-            new FabricItemSettings().maxDamage(96), 2, 1f));
+            new FabricItemSettings().maxDamage(96), 3, 1f + 0.3f));
 
     public static final Item BUG_NET_NETHERITE = registerItem("bug_net_netherite", new BugNetItem(
-            new FabricItemSettings().fireproof().maxDamage(128), 3, 1f));
+            new FabricItemSettings().fireproof().maxDamage(128), 4, 1f + 0.4f));
 
     public static final Item WOODLAND_DOR_BEETLE_ITEM = registerItem("woodland_dor_beetle_item", new Item(new FabricItemSettings()));
 
