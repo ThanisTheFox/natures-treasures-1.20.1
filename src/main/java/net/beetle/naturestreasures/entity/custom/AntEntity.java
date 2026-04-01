@@ -2,9 +2,7 @@ package net.beetle.naturestreasures.entity.custom;
 
 import net.beetle.naturestreasures.entity.ModEntities;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.AnimationState;
-import net.minecraft.entity.EntityPose;
-import net.minecraft.entity.EntityType;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -13,7 +11,6 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
@@ -24,17 +21,25 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+import java.util.UUID;
+
 public class AntEntity extends AnimalEntity {
-    //ctrl + h auf Entity für alle Entity Types
+
+    @Nullable
+    private UUID leaderUuid;
+    private int leaderSearchCooldown = 0;
+
     public AntEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
     }
+
 
     public final AnimationState IdleAnimationState = new AnimationState();
     private int IdleAnimationTimeout = 0;
 
     private void setupAnimationStates() {
-        if(this.IdleAnimationTimeout <= 0) {
+        if (this.IdleAnimationTimeout <= 0) {
             this.IdleAnimationTimeout = this.random.nextInt(40) + 80;
             this.IdleAnimationState.start(this.age);
         } else {
@@ -42,37 +47,88 @@ public class AntEntity extends AnimalEntity {
         }
     }
 
-
     @Override
     protected void updateLimbs(float posDelta) {
         float f = this.getPose() == EntityPose.STANDING ? Math.min(posDelta * 6.0f, 1.0f) : 0.0f;
-        this.limbAnimator.updateLimbs(f,0.2f);
+        this.limbAnimator.updateLimbs(f, 0.2f);
     }
 
     @Override
     public void tick() {
         super.tick();
-        if(this.getWorld().isClient()) {
+
+        if (!this.getWorld().isClient()) {
+            if (leaderUuid != null) {
+                AntEntity leader = getLeader();
+                if (leader == null || !leader.isAlive()) {
+                    leaderUuid = null;
+                }
+            }
+
+
+            if (leaderUuid == null && leaderSearchCooldown-- <= 0) {
+                leaderSearchCooldown = 20;
+                findLeader();
+            }
+        }
+
+
+        if (this.getWorld().isClient()) {
             setupAnimationStates();
         }
+    }
+
+    private void findLeader() {
+        List<AntEntity> candidates = this.getWorld().getEntitiesByClass(
+                AntEntity.class,
+                this.getBoundingBox().expand(10.0), // search radius 10 blocks
+                ant -> ant != this && ant.leaderUuid == null // only free ants (potential leaders)
+        );
+
+        if (!candidates.isEmpty()) {
+            // Choose the closest candidate
+            AntEntity leader = candidates.stream()
+                    .min((a, b) -> Double.compare(this.squaredDistanceTo(a), this.squaredDistanceTo(b)))
+                    .orElse(null);
+            if (leader != null) {
+                this.leaderUuid = leader.getUuid();
+            }
+        }
+    }
+
+    @Nullable
+    public AntEntity getLeader() {
+        if (leaderUuid == null) return null;
+        World world = this.getWorld();
+        if (world instanceof ServerWorld serverWorld) {
+            Entity entity = serverWorld.getEntity(leaderUuid);
+            if (entity instanceof AntEntity ant) {
+                return ant;
+            }
+        }
+        return null;
+    }
+
+    public void clearLeader() {
+        leaderUuid = null;
     }
 
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
-        //SwimGoal als höchste Prio da das Ding sonst ersäuft
-        this.goalSelector.add(1, new AnimalMateGoal(this,1.15D));
-        this.goalSelector.add(2, new TemptGoal(this,1.25D, Ingredient.ofItems(Items.SUGAR),false));
-        this.goalSelector.add(4, new WanderAroundFarGoal(this,1D));
-        this.goalSelector.add(5, new LookAtEntityGoal(this, PlayerEntity.class, 4f));
+        this.goalSelector.add(1, new AnimalMateGoal(this, 1.15D));
+        this.goalSelector.add(2, new TemptGoal(this, 1.25D, Ingredient.ofItems(Items.SUGAR), false));
+        // Follow leader goal – higher priority than wander
+        this.goalSelector.add(3, new FollowLeaderGoal(this, 1.0D, 3.0F, 10.0F));
+        this.goalSelector.add(4, new WanderAroundFarGoal(this, 1.0D));
+        this.goalSelector.add(5, new LookAtEntityGoal(this, PlayerEntity.class, 4.0F));
         this.goalSelector.add(6, new LookAroundGoal(this));
-
     }
 
     public static DefaultAttributeContainer.Builder createAntAttributes() {
         return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH,5)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED,0.2f)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 5)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2f)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 20);
     }
 
@@ -87,16 +143,19 @@ public class AntEntity extends AnimalEntity {
         return ModEntities.ANT.create(world);
     }
 
+    // Sounds (unchanged)
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_SILVERFISH_AMBIENT;
     }
+
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
         return SoundEvents.ENTITY_SILVERFISH_HURT;
     }
+
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
@@ -105,6 +164,55 @@ public class AntEntity extends AnimalEntity {
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.15f,1.0f);
+        this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.15f, 1.0f);
+    }
+
+    // der leader der iron party wird so bestimmt
+    class FollowLeaderGoal extends Goal {
+        private final AntEntity ant;
+        private final double speed;
+        private final float minDistance;
+        private final float maxDistance;
+
+        public FollowLeaderGoal(AntEntity ant, double speed, float minDistance, float maxDistance) {
+            this.ant = ant;
+            this.speed = speed;
+            this.minDistance = minDistance;
+            this.maxDistance = maxDistance;
+        }
+
+        @Override
+        public boolean canStart() {
+            AntEntity leader = ant.getLeader();
+            if (leader == null) return false;
+            return ant.squaredDistanceTo(leader) > minDistance * minDistance;
+        }
+
+        @Override
+        public boolean shouldContinue() {
+            AntEntity leader = ant.getLeader();
+            if (leader == null) return false;
+            double distSq = ant.squaredDistanceTo(leader);
+            // Damit sie nicht zu weit weg gehen
+            return distSq > minDistance * minDistance && distSq < maxDistance * maxDistance;
+        }
+
+        @Override
+        public void start() {
+
+        }
+
+        @Override
+        public void stop() {
+            ant.getNavigation().stop();
+        }
+
+        @Override
+        public void tick() {
+            AntEntity leader = ant.getLeader();
+            if (leader != null) {
+                ant.getNavigation().startMovingTo(leader, speed);
+            }
+        }
     }
 }
