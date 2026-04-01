@@ -39,29 +39,75 @@ public class BugNetItem extends Item {
             return ActionResult.FAIL;
         }
 
+        // Calculate catch chance
         float baseChance = catchable.getBaseCatchChance();
         float finalChance = Math.min(baseChance * catchChanceMultiplier, 1.0f);
 
+        // Failed catch
         if (world.getRandom().nextFloat() > finalChance) {
             world.playSound(null, player.getX(), player.getY(), player.getZ(),
                     SoundEvents.ENTITY_ITEM_BREAK, player.getSoundCategory(), 1.0f, 1.0f);
+
+            String[] messages = new String[] {
+                    "The insect slipped away...",
+                    "It wriggled free!",
+                    "So close... but it escaped!",
+                    "The tiny creature fled!",
+                    "Nature outsmarted you this time.",
+                    "It darted out of your reach!",
+                    "The insect vanished into the grass.",
+                    "Better luck next time!",
+                    "The net returned empty-handed..",
+                    "It seems you were too slow..."
+            };
+
+            String randomMessage = messages[world.getRandom().nextInt(messages.length)];
+
+            player.sendMessage(Text.literal(randomMessage), true);
+
             if (stack.damage(1, player.getRandom(), null) && stack.isEmpty()) {
                 player.playSound(SoundEvents.ENTITY_ITEM_BREAK, 1.0f, 1.0f);
             }
+
             player.swingHand(hand);
             return ActionResult.FAIL;
         }
 
+        // Successful catch → give item
         ItemStack caughtItem = catchable.getCaughtItem();
         if (!player.getInventory().insertStack(caughtItem)) {
             player.dropItem(caughtItem, false);
         }
 
+        // 📖 Add to encyclopedia if player has one
+        ItemStack encyclopedia = null;
+        for (int i = 0; i < player.getInventory().size(); i++) {
+            ItemStack s = player.getInventory().getStack(i);
+            if (s.getItem() instanceof InsectEncyclopediaItem) {
+                encyclopedia = s;
+                break;
+            }
+        }
+
+        if (encyclopedia != null) {
+            InsectEncyclopediaItem.addEntry(
+                    encyclopedia,
+                    entity.getType().getRegistryEntry().getKey().get().getValue(),
+                    catchable.getInsectDisplayName(),
+                    catchable.getCatchDifficulty(),
+                    catchable.getBaseCatchChance(),
+                    catchable.getInsectLore()
+            );
+        }
+
+        // Remove the entity
         entity.discard();
 
+        // Play success sound
         world.playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.ENTITY_ITEM_PICKUP, player.getSoundCategory(), 1.0f, 1.0f);
 
+        // Damage the net
         if (stack.damage(1, player.getRandom(), null) && stack.isEmpty()) {
             player.playSound(SoundEvents.ENTITY_ITEM_BREAK, 1.0f, 1.0f);
         }

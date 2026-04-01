@@ -175,6 +175,16 @@ public class AntEntity extends AnimalEntity implements Catchable {
     }
 
     @Override
+    public String getInsectDisplayName() {
+        return "Ant";
+    }
+
+    @Override
+    public String getInsectLore() {
+        return "A small ant that lives in colonies. They love sugar!";
+    }
+
+    @Override
     public ItemStack getCaughtItem() {
         return new ItemStack(ModItems.ANT_ITEM);
     }

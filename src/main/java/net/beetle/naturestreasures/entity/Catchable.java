@@ -9,4 +9,9 @@ public interface Catchable {
     float getBaseCatchChance();
 
     ItemStack getCaughtItem();
+
+    String getInsectDisplayName();  // e.g., "Ant"
+
+    String getInsectLore();
+
 }
