@@ -1,13 +1,13 @@
-// 1.20.1	2026-04-01T15:46:16.2908152	Nature's Treasures/Recipes
-2b3b496966724709c257fa9b87bfd98c5f6482f0 data\natures-treasures\recipes\bug_net_iron.json
-0f66afbb9fc840e41893653adbfe7bf6cf10c58f data\natures-treasures\recipes\bug_net.json
-df279953047a1169826fa2a26082b25f92c8fb52 data\natures-treasures\advancements\recipes\misc\bug_net_iron.json
-9a5a4a88155a9d11a47ec8317cad70d312a14000 data\natures-treasures\advancements\recipes\misc\bug_net_gold.json
-1d55a40b658ba9caa849f100427f40d995e341ff data\natures-treasures\recipes\bug_net_copper.json
-13380915decfcd898b01ed31ab8c081fa06239d8 data\natures-treasures\recipes\bug_net_diamond.json
-602f00cc73e00ca756b53f48723630952cca4498 data\natures-treasures\advancements\recipes\misc\bug_net_diamond.json
-f3584c417ff0c55348e3151627fd8c57985b4303 data\natures-treasures\advancements\recipes\misc\bug_net_netherite.json
-f06e8810819145976060d70d407e047374b16adb data\natures-treasures\advancements\recipes\misc\bug_net.json
-761398b945f520b9b0e759b1621dce043d2bf5eb data\natures-treasures\recipes\bug_net_netherite.json
-5f4af30ff7f0c64c9dad2add9dcbf483799b81b0 data\natures-treasures\recipes\bug_net_gold.json
-572b22704f0b6c348ad7c503b392deb6b8d1f203 data\natures-treasures\advancements\recipes\misc\bug_net_copper.json
+// 1.20.1	2026-04-01T19:30:08.772393	Nature's Treasures/Recipes
+0f66afbb9fc840e41893653adbfe7bf6cf10c58f data/natures-treasures/recipes/bug_net.json
+f3584c417ff0c55348e3151627fd8c57985b4303 data/natures-treasures/advancements/recipes/misc/bug_net_netherite.json
+761398b945f520b9b0e759b1621dce043d2bf5eb data/natures-treasures/recipes/bug_net_netherite.json
+602f00cc73e00ca756b53f48723630952cca4498 data/natures-treasures/advancements/recipes/misc/bug_net_diamond.json
+df279953047a1169826fa2a26082b25f92c8fb52 data/natures-treasures/advancements/recipes/misc/bug_net_iron.json
+f06e8810819145976060d70d407e047374b16adb data/natures-treasures/advancements/recipes/misc/bug_net.json
+5f4af30ff7f0c64c9dad2add9dcbf483799b81b0 data/natures-treasures/recipes/bug_net_gold.json
+13380915decfcd898b01ed31ab8c081fa06239d8 data/natures-treasures/recipes/bug_net_diamond.json
+1d55a40b658ba9caa849f100427f40d995e341ff data/natures-treasures/recipes/bug_net_copper.json
+9a5a4a88155a9d11a47ec8317cad70d312a14000 data/natures-treasures/advancements/recipes/misc/bug_net_gold.json
+572b22704f0b6c348ad7c503b392deb6b8d1f203 data/natures-treasures/advancements/recipes/misc/bug_net_copper.json
+2b3b496966724709c257fa9b87bfd98c5f6482f0 data/natures-treasures/recipes/bug_net_iron.json
