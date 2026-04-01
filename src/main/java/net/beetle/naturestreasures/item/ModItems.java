@@ -28,6 +28,7 @@ public class ModItems {
     public static final Item INSECT_ENCYCLOPEDIA = registerItem("insect_encyclopedia", new InsectEncyclopediaItem(new FabricItemSettings()));
 
     public static final Item ANT_SPAWN_EGG = registerItem("ant_spawn_egg", new SpawnEggItem(ModEntities.ANT,0x362c28,0x4a1a06, new FabricItemSettings()));
+    public static final Item WOODLAND_DOR_BEETLE_SPAWN_EGG = registerItem("woodland_dor_beetle_spawn_egg", new SpawnEggItem(ModEntities.WOODLANDDORBEETLE,0x051f0c,0x0b4530, new FabricItemSettings()));
 
 
 //sneaky Iron Party

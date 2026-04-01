@@ -26,6 +26,8 @@ public class ModItemGroups {
                         entries.add(ModItems.BUG_NET_NETHERITE);
 
                         entries.add(ModItems.ANT_SPAWN_EGG);
+                        entries.add(ModItems.WOODLAND_DOR_BEETLE_SPAWN_EGG);
+
                         entries.add(ModItems.INSECT_ENCYCLOPEDIA);
                     }).build());
 
