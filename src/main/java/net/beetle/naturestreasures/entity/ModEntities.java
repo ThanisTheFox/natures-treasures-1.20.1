@@ -2,13 +2,17 @@ package net.beetle.naturestreasures.entity;
 
 import net.beetle.naturestreasures.NaturesTreasures;
 import net.beetle.naturestreasures.entity.custom.AntEntity;
+import net.beetle.naturestreasures.entity.custom.WoodlandDorBeetleEntity;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.SpawnRestriction;
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -21,6 +25,15 @@ public class ModEntities {
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, AntEntity::new)
                     .dimensions(EntityDimensions.fixed(0.5f, 0.5f))
                     .build());
+    public static final EntityType<WoodlandDorBeetleEntity> WOODLANDDORBEETLE = Registry.register(Registries.ENTITY_TYPE,
+            new Identifier(NaturesTreasures.MOD_ID, "woodlanddorbeetle"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, WoodlandDorBeetleEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.4f, 0.4f))
+                    .build());
+    public static void registerAttributes() {
+        FabricDefaultAttributeRegistry.register(ANT, AntEntity.createAntAttributes());
+        FabricDefaultAttributeRegistry.register(WOODLANDDORBEETLE, WoodlandDorBeetleEntity.createWoodlandDorBeetleAttributes());
+    }
 
     public static void registerModEntities() {
         NaturesTreasures.LOGGER.info("Registering Entities for " + NaturesTreasures.MOD_ID);

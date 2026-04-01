@@ -21,7 +21,7 @@ public class NaturesTreasures implements ModInitializer {
 		ModItemGroups.registerItemGroups();
 
 		ModEntities.registerModEntities();
+		ModEntities.registerAttributes();
 
-		FabricDefaultAttributeRegistry.register(ModEntities.ANT, AntEntity.createAntAttributes());
 	}
 }

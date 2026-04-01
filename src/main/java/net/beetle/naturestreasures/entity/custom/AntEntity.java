@@ -125,9 +125,9 @@ public class AntEntity extends AnimalEntity implements Catchable {
 
     public static DefaultAttributeContainer.Builder createAntAttributes() {
         return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 5)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 5D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2f)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 20);
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 20D);
     }
 
     @Override
