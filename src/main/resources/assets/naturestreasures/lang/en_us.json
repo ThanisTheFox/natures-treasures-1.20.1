@@ -2,6 +2,11 @@
   "item.naturestreasures.ant_item": "Ant",
   "item.naturestreasures.woodland_dor_beetle_item": "Woodland Dor Beetle",
   "item.naturestreasures.bug_net": "Bug Net",
+  "item.naturestreasures.bug_net_copper": "Copper Bug Net",
+  "item.naturestreasures.bug_net_iron": "Iron Bug Net",
+  "item.naturestreasures.bug_net_gold": "Gold Bug Net",
+  "item.naturestreasures.bug_net_diamond": "Diamond Bug Net",
+  "item.naturestreasures.bug_net_netherite": "Netherite Bug Net",
   "item.naturestreasures.ant_spawn_egg": "Ant Spawn Egg",
 
   "itemgroup.natures_treasures_tab": "Natures Treasures"

@@ -19,7 +19,7 @@ public class AntModel<T extends AntEntity>  extends SinglePartEntityModel<T> {
 	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
-		ModelPartData ant = modelPartData.addChild("ant", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 23.0F, 0.0F));
+		ModelPartData ant = modelPartData.addChild("ant", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 23.0F, -4.0F));
 
 		ModelPartData body = ant.addChild("body", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
@@ -29,7 +29,7 @@ public class AntModel<T extends AntEntity>  extends SinglePartEntityModel<T> {
 				.uv(26, 30).cuboid(-3.5F, -4.6F, 10.0F, 6.0F, 6.0F, 1.0F, new Dilation(0.0F))
 				.uv(0, 32).cuboid(-3.5F, -4.6F, -2.0F, 6.0F, 6.0F, 1.0F, new Dilation(0.0F)), ModelTransform.pivot(0.5F, -6.6F, 9.9F));
 
-		ModelPartData head = ant.addChild("head", ModelPartBuilder.create().uv(26, 19).cuboid(-3.5F, -10.0F, -5.0F, 7.0F, 5.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 1.0F));
+		ModelPartData head = ant.addChild("head", ModelPartBuilder.create().uv(26, 19).cuboid(-3.5F, -10.0F, -5.0F, 7.0F, 5.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
 		ModelPartData antlerr = head.addChild("antlerr", ModelPartBuilder.create(), ModelTransform.pivot(-1.9F, -9.4F, -5.0F));
 
@@ -58,7 +58,7 @@ public class AntModel<T extends AntEntity>  extends SinglePartEntityModel<T> {
 		ModelPartData cube_r8 = left.addChild("cube_r8", ModelPartBuilder.create().uv(38, 15).cuboid(-1.0F, -2.0F, -1.0F, 1.0F, 1.0F, 2.0F, new Dilation(0.0F)), ModelTransform.of(-0.2297F, 1.5F, -1.9483F, 0.0F, 0.6109F, 0.0F));
 
 		ModelPartData eyes = head.addChild("eyes", ModelPartBuilder.create().uv(38, 2).cuboid(3.0F, -8.0F, -4.0F, 1.0F, 2.0F, 2.0F, new Dilation(0.0F))
-				.uv(38, 6).cuboid(-4.0F, -8.0F, -4.0F, 1.0F, 2.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+				.uv(0, 0).cuboid(-4.0F, -8.0F, -4.0F, 1.0F, 2.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
 		ModelPartData legs = ant.addChild("legs", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
@@ -92,7 +92,7 @@ public class AntModel<T extends AntEntity>  extends SinglePartEntityModel<T> {
 
 		ModelPartData cube_r18 = l3.addChild("cube_r18", ModelPartBuilder.create().uv(14, 34).cuboid(-3.0F, -1.0F, -1.0F, 4.0F, 1.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(3.0F, -3.5F, 0.0F, 0.0F, 0.0F, 0.0087F));
 
-		ModelPartData r3 = legs.addChild("r3", ModelPartBuilder.create().uv(32, 39).cuboid(6.0F, 0.0F, -1.0F, 2.0F, 1.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(-2.5F, 0.0F, 5.5F, 0.0F, -2.3126F, 0.0F));
+		ModelPartData r3 = legs.addChild("r3", ModelPartBuilder.create().uv(34, 39).cuboid(6.0F, 0.0F, -1.0F, 2.0F, 1.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(-2.5F, 0.0F, 5.5F, 0.0F, -2.3126F, 0.0F));
 
 		ModelPartData cube_r19 = r3.addChild("cube_r19", ModelPartBuilder.create().uv(38, 10).cuboid(-1.0F, -4.0F, -1.0F, 1.0F, 4.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(6.1F, 0.0F, 0.0F, 0.0F, 0.0F, -0.3054F));
 
