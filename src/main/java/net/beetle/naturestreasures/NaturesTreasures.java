@@ -19,10 +19,9 @@ public class NaturesTreasures implements ModInitializer {
 		System.out.println("=== NaturesTreasures: onInitialize called ===");
 		ModItems.registerModItems();
 		ModItemGroups.registerItemGroups();
-
 		ModEntities.registerModEntities();
-		ModEntities.registerAttributes();
-
-		ModScreenHandlers.registerScreenHandlers();
+		ModScreenHandlers.registerScreenHandlers(); // Register the handler type
+		FabricDefaultAttributeRegistry.register(ModEntities.ANT, AntEntity.createAntAttributes());
+		System.out.println("=== NaturesTreasures: onInitialize finished ===");
 	}
 }
