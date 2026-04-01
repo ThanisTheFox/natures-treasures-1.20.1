@@ -1,12 +1,11 @@
 package net.beetle.naturestreasures.item;
 
 import net.beetle.naturestreasures.NaturesTreasures;
+import net.beetle.naturestreasures.entity.ModEntities;
 import net.beetle.naturestreasures.item.custom.BugNetItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -17,10 +16,8 @@ public class ModItems {
             new FabricItemSettings().maxDamage(64)));
     public static final Item WOODLAND_DOR_BEETLE_ITEM = registerItem("woodland_dor_beetle_item", new Item(new FabricItemSettings()));
 
-    private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries) {
-        entries.add(ANT_ITEM);
-        entries.add(WOODLAND_DOR_BEETLE_ITEM);
-    }
+    public static final Item ANT_SPAWN_EGG = registerItem("ant_spawn_egg", new SpawnEggItem(ModEntities.ANT,0x362c28,0x4a1a06, new FabricItemSettings()));
+
 
 //sneaky Iron Party
 
@@ -31,6 +28,5 @@ public class ModItems {
     public static void registerModItems() {
         NaturesTreasures.LOGGER.info("Registering Mod Items for " + NaturesTreasures.MOD_ID);
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(ModItems::addItemsToIngredientItemGroup);
     }
 }
