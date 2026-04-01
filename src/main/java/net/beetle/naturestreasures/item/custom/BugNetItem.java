@@ -79,7 +79,7 @@ public class BugNetItem extends Item {
             player.dropItem(caughtItem, false);
         }
 
-        // 📖 Add to encyclopedia if player has one
+
         ItemStack encyclopedia = null;
         for (int i = 0; i < player.getInventory().size(); i++) {
             ItemStack s = player.getInventory().getStack(i);
