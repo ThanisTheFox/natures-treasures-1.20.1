@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 public class ModItems {
     public static final Item ANT_ITEM = registerItem("ant_item", new Item(new FabricItemSettings()));
     public static final Item BUG_NET = registerItem("bug_net", new BugNetItem(
-            new FabricItemSettings().maxDamage(64)));
+            new FabricItemSettings().maxDamage(32), 0, 1f));
     public static final Item WOODLAND_DOR_BEETLE_ITEM = registerItem("woodland_dor_beetle_item", new Item(new FabricItemSettings()));
 
     public static final Item ANT_SPAWN_EGG = registerItem("ant_spawn_egg", new SpawnEggItem(ModEntities.ANT,0x362c28,0x4a1a06, new FabricItemSettings()));

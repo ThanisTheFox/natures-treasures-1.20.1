@@ -1,6 +1,8 @@
 package net.beetle.naturestreasures.entity.custom;
 
+import net.beetle.naturestreasures.entity.Catchable;
 import net.beetle.naturestreasures.entity.ModEntities;
+import net.beetle.naturestreasures.item.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -24,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class AntEntity extends AnimalEntity {
+public class AntEntity extends AnimalEntity implements Catchable {
 
     @Nullable
     private UUID leaderUuid;
@@ -34,7 +36,7 @@ public class AntEntity extends AnimalEntity {
         super(entityType, world);
     }
 
-
+    // Animation fields
     public final AnimationState IdleAnimationState = new AnimationState();
     private int IdleAnimationTimeout = 0;
 
@@ -65,13 +67,11 @@ public class AntEntity extends AnimalEntity {
                 }
             }
 
-
             if (leaderUuid == null && leaderSearchCooldown-- <= 0) {
                 leaderSearchCooldown = 20;
                 findLeader();
             }
         }
-
 
         if (this.getWorld().isClient()) {
             setupAnimationStates();
@@ -86,7 +86,6 @@ public class AntEntity extends AnimalEntity {
         );
 
         if (!candidates.isEmpty()) {
-            // Choose the closest candidate
             AntEntity leader = candidates.stream()
                     .min((a, b) -> Double.compare(this.squaredDistanceTo(a), this.squaredDistanceTo(b)))
                     .orElse(null);
@@ -118,7 +117,6 @@ public class AntEntity extends AnimalEntity {
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.15D));
         this.goalSelector.add(2, new TemptGoal(this, 1.25D, Ingredient.ofItems(Items.SUGAR), false));
-        // Follow leader goal – higher priority than wander
         this.goalSelector.add(3, new FollowLeaderGoal(this, 1.0D, 3.0F, 10.0F));
         this.goalSelector.add(4, new WanderAroundFarGoal(this, 1.0D));
         this.goalSelector.add(5, new LookAtEntityGoal(this, PlayerEntity.class, 4.0F));
@@ -143,7 +141,6 @@ public class AntEntity extends AnimalEntity {
         return ModEntities.ANT.create(world);
     }
 
-    // Sounds (unchanged)
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
@@ -167,7 +164,21 @@ public class AntEntity extends AnimalEntity {
         this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.15f, 1.0f);
     }
 
-    // der leader der iron party wird so bestimmt
+    @Override
+    public int getCatchDifficulty() {
+        return 0; // easiest difficulty
+    }
+
+    @Override
+    public float getBaseCatchChance() {
+        return 0.6f; // 60%
+    }
+
+    @Override
+    public ItemStack getCaughtItem() {
+        return new ItemStack(ModItems.ANT_ITEM);
+    }
+
     class FollowLeaderGoal extends Goal {
         private final AntEntity ant;
         private final double speed;
@@ -193,13 +204,11 @@ public class AntEntity extends AnimalEntity {
             AntEntity leader = ant.getLeader();
             if (leader == null) return false;
             double distSq = ant.squaredDistanceTo(leader);
-            // Damit sie nicht zu weit weg gehen
             return distSq > minDistance * minDistance && distSq < maxDistance * maxDistance;
         }
 
         @Override
         public void start() {
-
         }
 
         @Override
