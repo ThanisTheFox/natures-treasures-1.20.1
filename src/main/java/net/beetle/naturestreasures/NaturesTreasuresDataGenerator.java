@@ -1,6 +1,7 @@
 package net.beetle.naturestreasures;
 
 import net.beetle.naturestreasures.datagen.ModModelProvider;
+import net.beetle.naturestreasures.datagen.ModRecipeProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
@@ -10,6 +11,6 @@ public class NaturesTreasuresDataGenerator implements DataGeneratorEntrypoint {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
 		pack.addProvider(ModModelProvider::new);
-
+		pack.addProvider(ModRecipeProvider::new);
 	}
 }

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "naturestreasures:bug_net_iron"
+    },
+    "C": {
+      "item": "minecraft:diamond"
+    },
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    " SS",
+    " CS",
+    "B  "
+  ],
+  "result": {
+    "item": "naturestreasures:bug_net_diamond"
+  },
+  "show_notification": true
+}
