@@ -125,6 +125,15 @@ public class WoodlandDorBeetleEntity extends AnimalEntity implements Catchable {
         return new ItemStack(ModItems.WOODLAND_DOR_BEETLE_ITEM);
     }
 
+    @Override
+    public String getInsectDisplayName() {
+        return "Woodland Dor Beetle";
+    }
+
+    @Override
+    public String getInsectLore() {
+        return "A tiny Beetle that can be found anywhere. They love Dung!";
+    }
 
 
 }
