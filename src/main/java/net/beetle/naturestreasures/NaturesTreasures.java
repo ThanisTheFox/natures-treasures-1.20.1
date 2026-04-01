@@ -25,8 +25,7 @@ public class NaturesTreasures implements ModInitializer {
 		ModItemGroups.registerItemGroups();
 
 		ModEntities.registerModEntities();
-		FabricDefaultAttributeRegistry.register(ANT, AntEntity.createAntAttributes());
-		FabricDefaultAttributeRegistry.register(WOODLANDDORBEETLE, WoodlandDorBeetleEntity.createWoodlandDorBeetleAttributes());
+		ModEntities.registerAttributes();
 
 		ModScreenHandlers.registerScreenHandlers(); // Register the handler type
 		System.out.println("=== NaturesTreasures: onInitialize finished ===");

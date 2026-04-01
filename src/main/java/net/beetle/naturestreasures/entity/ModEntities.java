@@ -11,8 +11,6 @@ import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.SpawnRestriction;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -34,6 +32,7 @@ public class ModEntities {
     public static void registerModEntities() {
         NaturesTreasures.LOGGER.info("Registering Entities for " + NaturesTreasures.MOD_ID);
 
+
         SpawnRestriction.register(ANT, SpawnRestriction.Location.ON_GROUND,
                 Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
                 (entityType, world, spawnReason, pos, random) -> world.getLightLevel(pos) > 7);
@@ -44,4 +43,14 @@ public class ModEntities {
                         BiomeKeys.SUNFLOWER_PLAINS, BiomeKeys.BIRCH_FOREST, BiomeKeys.OLD_GROWTH_BIRCH_FOREST),
                 SpawnGroup.CREATURE, ANT, 1000, 3, 5);
     }
+
+    public static void registerAttributes() {
+        FabricDefaultAttributeRegistry.register(ANT, AntEntity.createAntAttributes());
+        FabricDefaultAttributeRegistry.register(WOODLANDDORBEETLE, WoodlandDorBeetleEntity.createWoodlandDorBeetleAttributes());
+    }
 }
+
+
+
+
+
