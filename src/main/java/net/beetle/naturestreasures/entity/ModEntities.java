@@ -30,10 +30,6 @@ public class ModEntities {
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, WoodlandDorBeetleEntity::new)
                     .dimensions(EntityDimensions.fixed(0.4f, 0.4f))
                     .build());
-    public static void registerAttributes() {
-        FabricDefaultAttributeRegistry.register(ANT, AntEntity.createAntAttributes());
-        FabricDefaultAttributeRegistry.register(WOODLANDDORBEETLE, WoodlandDorBeetleEntity.createWoodlandDorBeetleAttributes());
-    }
 
     public static void registerModEntities() {
         NaturesTreasures.LOGGER.info("Registering Entities for " + NaturesTreasures.MOD_ID);

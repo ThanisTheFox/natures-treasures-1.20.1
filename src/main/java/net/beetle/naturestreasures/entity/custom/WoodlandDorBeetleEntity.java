@@ -112,7 +112,7 @@ public class WoodlandDorBeetleEntity extends AnimalEntity implements Catchable {
 
     @Override
     public int getCatchDifficulty() {
-        return 2;
+        return 0;
     }
 
     @Override
