@@ -14,7 +14,7 @@ public class ModEntities {
     public static final EntityType<AntEntity> ANT = Registry.register(Registries.ENTITY_TYPE,
             new Identifier(NaturesTreasures.MOD_ID, "ant"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, AntEntity::new)
-                    .dimensions(EntityDimensions.fixed(1f,1f)).build());
+                    .dimensions(EntityDimensions.fixed(0.5f,0.5f)).build());
     //EntityDimensions.fixed() Größe der Hitbox
 
     public static void registerModEntities() {

@@ -12,7 +12,7 @@ public class AntRenderer extends MobEntityRenderer<AntEntity, AntModel<AntEntity
     private static final Identifier TEXTURE = new Identifier(NaturesTreasures.MOD_ID,"textures/entity/ant.png");
 
     public AntRenderer(EntityRendererFactory.Context context) {
-        super(context, new AntModel<>(context.getPart(ModModelLayers.ANT)),0.6f);
+        super(context, new AntModel<>(context.getPart(ModModelLayers.ANT)),0.5f);
         //0.6f sind die Größe des Schattens
     }
 
@@ -25,10 +25,10 @@ public class AntRenderer extends MobEntityRenderer<AntEntity, AntModel<AntEntity
     public void render(AntEntity mobEntity, float f, float g, MatrixStack matrixStack,
                        VertexConsumerProvider vertexConsumerProvider, int i) {
         if(mobEntity.isBaby()) {
-           matrixStack.scale(0.5f,0.5f,0.5f);
+           matrixStack.scale(0.25f,0.25f,0.25f);
            //Größe Baby im Verhältnis (0,5 = halb so groß)
         } else {
-            matrixStack.scale(1f,1f,1f);
+            matrixStack.scale(0.5f,0.5f,0.5f);
             //Größe normal im Verhältnis ig
         }
 
