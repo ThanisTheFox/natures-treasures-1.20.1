@@ -14,11 +14,8 @@ import net.minecraft.client.gui.screen.ingame.HandledScreens;
 public class NaturesTreasuresClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        System.out.println("=== NaturesTreasuresClient: onInitializeClient called ===");
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.ANT, AntModel::getTexturedModelData);
         EntityRendererRegistry.register(ModEntities.ANT, AntRenderer::new);
-        // Register the screen on the client side
         HandledScreens.register(ModScreenHandlers.ENCYCLOPEDIA_SCREEN_HANDLER, InsectEncyclopediaScreen::new);
-        System.out.println("=== Encyclopedia screen registered ===");
     }
 }
